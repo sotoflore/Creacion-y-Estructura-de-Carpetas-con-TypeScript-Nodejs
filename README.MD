@@ -1,4 +1,5 @@
 # ESTRUCTURA DE CARPETAS CON TYPESCRIPT Y NODEJS
+![image-estructura](https://github.com/sotoflore/Creacion-y-Estructura-de-Carpetas-con-TypeScript-Nodejs/blob/main/src/image-estructura.png)
 
 ## Instalar Node.js
 Primero, necesitas instalar **Node.js** en tu máquina. Puedes descargar el instalador desde la [página oficial de Node.js](https://nodejs.org/). Asegúrate de instalar también **`npm`** (Node Package Manager), que generalmente viene incluido con **Node.js**.
