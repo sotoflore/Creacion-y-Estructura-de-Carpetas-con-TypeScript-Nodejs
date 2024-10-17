@@ -90,18 +90,21 @@ npm install express
 ## Escribir el Código en TypeScript
 Crea un archivo **`src/index.ts`** y escribe tu código **TypeScript** con **Express**. Un ejemplo simple:
 ```ts
-import express from 'express';
+import express, { Request, Response } from "express";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
+app.use(express.json());
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello, world!");
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+  console.log(`Server running on http://localhost:${port}`);
 });
+
 ``` 
 ## Compilar el Código TypeScript
 Compila tu proyecto utilizando el comando **`tsc`**.
