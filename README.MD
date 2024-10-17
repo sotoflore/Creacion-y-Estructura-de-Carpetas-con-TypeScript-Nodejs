@@ -3,43 +3,6 @@
 ![image-estructura](https://github.com/sotoflore/Creacion-y-Estructura-de-Carpetas-con-TypeScript-Nodejs/blob/main/src/image-estructura.png)
 
 
-# Ejecutando codigo TypeScript con Nodejs
-## Instalacion
-
-```bash
-npm install -D typescript ts-node
-```
-
-Para ejecutar 
-```json
-"scripts": {
-    "dev": "npx ts-node src/index.ts"
-  }
-```
-## Nodemon
-Para reiniciar el servidor cuando hagamos cambios
-
-```bash
-npm install -D nodemon
-```
-
-Para ejecutar 
-```json
-"scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts"
-  }
-```
-
-```bash
-npm run dev
-```
-
-
-
-
-
-
-
 # REST API con Node.js, Express y TypeScript
 
 ## Paso 1: Instalar Node.js y configurar un proyecto
