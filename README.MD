@@ -1,140 +1,309 @@
 # ESTRUCTURA DE CARPETAS CON TYPESCRIPT Y NODEJS
+
 ![image-estructura](https://github.com/sotoflore/Creacion-y-Estructura-de-Carpetas-con-TypeScript-Nodejs/blob/main/src/image-estructura.png)
 
-## Instalar Node.js
-Primero, necesitas instalar **Node.js** en tu máquina. Puedes descargar el instalador desde la [página oficial de Node.js](https://nodejs.org/). Asegúrate de instalar también **`npm`** (Node Package Manager), que generalmente viene incluido con **Node.js**.
 
-## Configurar el Entorno de Trabajo
-Crea un nuevo directorio para tu proyecto y navega a él en la terminal.
+# Ejecutando codigo TypeScript con Nodejs
+## Instalacion
 
 ```bash
-mkdir mi-proyecto-node
-```
-```bash
-cd mi-proyecto-node
+npm install -D typescript ts-node
 ```
 
-## Inicializar el Proyecto
-Utiliza **`npm`** para inicializar tu proyecto. Esto creará un archivo **`package.json`** en tu directorio, que mantendrá el registro de las dependencias y scripts de tu proyecto.
-
-```bash
-npm init
-```
-
-Durante este proceso, se te pedirá que ingreses información sobre tu proyecto, como el **nombre**, la **versión**, la **descripción**, el **punto de entrada**, **etc**. Puedes presionar **`Enter`** para aceptar los valores predeterminados o proporcionar tus propios valores.
-
+Para ejecutar 
 ```json
- {
-    "name": "estructura-app-de-typescript-nodejs",
-    "version": "1.0.0",
-    "description": "ejemplo de como estructurar nuestros archivos al desarollar una app con TypeScript",
-    "main": "index.js",
-    "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Francisco Soto Flores",
-    "license": "ISC"
-}
-```
-## Instalar TypeScript
-Instala **TypeScript** y el tipo de definiciones para **Node.js** como dependencias de desarrollo.
-```bash
-npm install typescript @types/node --save-dev
-```
-o
-```bash
-npm install -D typescript
-```
-
-## Configurar TypeScript
-Inicializa un archivo de configuración de TypeScript **`tsconfig.json`**.
-```bash
-tsc --init
-```
-Esto generará un archivo **`tsconfig.json`** en tu directorio de proyecto. Puedes personalizar este archivo según tus necesidades, pero una configuración básica puede verse así:
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+"scripts": {
+    "dev": "npx ts-node src/index.ts"
   }
-} 
 ```
-## Crear el Directorio de Código Fuente
-Crea un directorio **`src`** donde colocarás tus archivos **TypeScript**.
-```bash
-mkdir src
-```
+## Nodemon
+Para reiniciar el servidor cuando hagamos cambios
 
-## Crear el Archivo Principal
-Por lo general, el archivo de entrada de un proyecto **Node.js** es **`index.ts`** o **`app.ts`**. Crea este archivo en tu directorio de proyecto.
-
-## Instalar TypeScript y las Definiciones de Tipo
-Instala **TypeScript** y las definiciones de tipo para **Node.js** y **Express** como dependencias de desarrollo.
 ```bash
-npm install @types/express --save-dev
+npm install -D nodemon
 ```
 
-## Instalar Express
-Instala **Express** como una dependencia del proyecto.
-```bash
-npm install express
-```
-
-## Escribir el Código en TypeScript
-Crea un archivo **`src/index.ts`** y escribe tu código **TypeScript** con **Express**. Un ejemplo simple:
-```ts
-import express, { Request, Response } from "express";
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(express.json());
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, world!");
-});
-
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
-
-``` 
-## Compilar el Código TypeScript
-Compila tu proyecto utilizando el comando **`tsc`**.
-```bash
-npx tsc
-``` 
-Este comando generará los archivos **JavaScript** compilados en el directorio **`dist`**.
-
-## Ejecutar el Código Compilado
-Para ejecutar tu código, usa **`node`** y apunta al archivo **JavaScript** compilado.
-```bash
-node dist/index.js
-```
-## Configurar Scripts en package.json
-Para facilitar el proceso de **compilación** y **ejecución**, puedes agregar **scripts** a tu **`package.json`**:
+Para ejecutar 
 ```json
-`"scripts": {
-  "build": "tsc",
-  "start": "node dist/index.js",
-  "dev": "tsc && node dist/index.js"
-}` 
+"scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts"
+  }
 ```
-Ahora puedes usar los siguientes comandos:
--   Para compilar el proyecto: **`npm run build`**
--   Para ejecutar el proyecto: **`npm start`**
--   Para compilar y ejecutar el proyecto: **`npm run dev`**
+
+```bash
+npm run dev
+```
+
+
+
+
+
+
+
+# REST API con Node.js, Express y TypeScript
+
+## Paso 1: Instalar Node.js y configurar un proyecto
+
+- **Instala Node.js**: Si aún no lo tienes instalado, puedes descargarlo desde [nodejs.org](https://nodejs.org/).
+
+- **Inicializa un nuevo proyecto**:
+    
+    ```bash
+    // Creamos un directorio
+    mkdir rest-api
+
+    // Accedemos al directorio
+    cd  rest-api
+
+    // Inicializamos el proyecto, esto creará un archivo package.json
+    npm init -y
+    ```
+
+## Paso 2: Instalar TypeScript y configuraciones básicas
+
+- **Instala TypeScript y las definiciones de tipo para Node.js**:
+    
+    ```bash
+    npm install typescript @types/node --save-dev
+    ```
+    
+- **Inicializa TypeScript**:
+
+    ```bash
+    npx tsc --init
+    ```
+    
+    Esto creará un archivo **`tsconfig.json`**, donde puedes personalizar tu configuración de **TypeScript**. Unas configuraciones básicas podrían ser:
+    
+    ```bash
+    {
+      "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "esModuleInterop": true
+      },
+      "include": ["src/**/*.ts"],
+      "exclude": ["node_modules"]
+    }
+    ```
+    - **`compilerOptions`**: Aquí defines las opciones que el compilador usará para transformar tu código **TypeScript** en **JavaScript**.
+
+    - **`target`**: Especifica a qué versión de **JavaScript** se debe compilar. Los valores típicos son **ES5**, **ES6** (o ES2015), **ES2020**, etc. Si eliges **ES6**, el compilador generará código que siga las características de **ECMAScript 2015**.
+
+    - **`module`**: Define el sistema de **módulos** que estás utilizando. Para **Node.js**, comúnmente se usa **CommonJS**, ya que **Node.js** por defecto utiliza ese sistema de módulos.
+
+    - **`outDir`**: Especifica el **directorio** donde se colocará el código **JavaScript** generado después de la compilación. En este caso, el código compilado se ubicará en la carpeta **dist**.
+
+    - **`rootDir`**: Indica la **carpeta raíz** donde está el código **TypeScript**. Esto ayuda a que la estructura de carpetas sea la misma entre tu código fuente y el código compilado.
+
+    - **`strict`**: Habilita todas las verificaciones estrictas del compilador, como la no aceptación de valores null o undefined en lugares no permitidos, controlando de manera más precisa los tipos de datos.
+
+    - **`esModuleInterop`**: Esta opción facilita la interoperabilidad entre los **módulos ES** y **CommonJS**. Con true, te permite importar módulos CommonJS como si fueran módulos ES, usando import en lugar de require.
+
+    - **`include`**: Aquí defines qué archivos deben ser incluidos en la compilación. Por ejemplo, **`src/**/*`** indica que se incluirán todos los archivos dentro de la carpeta **src**.
+
+    - **`exclude`**: Define los archivos o carpetas que deben ser excluidos de la compilación. Normalmente, se excluyen los módulos de **Node.js (node_modules)** y la carpeta donde se guarda el código compilado **(dist)**.
+    
+- **Crea la carpeta `src`** donde irá todo el código **TypeScript**:
+
+    ```bash
+    mkdir src
+    ```
+
+## Paso 3: Instalar Express y otros paquetes útiles
+
+- **Instala Express y las definiciones de tipo para TypeScript**:
+    
+    ```bash
+    npm install express
+    npm install @types/express --save-dev
+    ```
+    
+- **Instala nodemon** para recargar automáticamente el servidor durante el desarrollo:
+    
+    ```bash
+    npm install nodemon --save-dev
+    ```
+    
+- **Instala ts-node** para ejecutar **TypeScript** directamente en **Node.js**:
+    
+    ```bash
+    npm install ts-node --save-dev
+    ```
+    
+
+## Paso 4: Crear el archivo de entrada del servidor
+
+- En la carpeta **`src`**, crea un archivo llamado **`index.ts`**:
+    ```bash
+    touch src/index.ts
+    ```
+    
+- **Configura el servidor básico** en `index.ts`:
+    
+    ```ts
+    import express, { Request, Response } from "express";
+
+    const app = express();
+    const port = process.env.PORT || 3000;
+
+    app.use(express.json());
+
+    app.get("/", (req: Request, res: Response) => {
+    res.send("Hello, world!");
+    });
+
+    app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    });
+    ```
+
+## Paso 5: Configurar scripts en package.json
+
+- En el archivo **`package.json`**, agrega los siguientes scripts para ejecutar el servidor:
+
+    ```js
+    "scripts": {
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "dev": "nodemon --watch src --exec ts-node src/index.ts"
+    }
+    ```
+
+    -   **`start`**: para iniciar el servidor en producción.
+    -   **`build`**: para compilar **TypeScript** a **JavaScript** en la carpeta **`dist`**.
+    -   **`dev`**: para iniciar el servidor en modo desarrollo con recarga automática.
+
+## Paso 6: Probar el servidor
+
+- **Inicia el servidor en modo desarrollo**:
+    ```bash
+    npm run dev
+    ```
+    
+- **Verifica el servidor** abriendo tu navegador y accediendo a **`http://localhost:3000`**. Deberías ver el mensaje **"Hello, world!"**.
+
+## Paso 7: Agregar rutas y controladores
+
+- **Crea una estructura de carpetas** para organizar mejor tu código:
+    
+    ```bash
+    mkdir src/routes src/controllers
+    ```
+    
+- **Crear una ruta** en **`src/routes/index.ts`**:
+    
+    ```ts
+    import { Router } from "express";
+    import { getUsers } from "../controllers/userController";
+
+    const router = Router();
+
+    router.get("/users", getUsers);
+
+    export default router;
+    ```
+    
+- **Crear un controlador** en **`src/controllers/userController.ts`**:
+    
+    ```ts
+    import { Request, Response } from "express";
+
+    export const getUsers = (req: Request, res: Response) => {
+    const users = [
+        { id: 1, name: "John Doe" },
+        { id: 2, name: "Jane Smith" },
+    ];
+    res.json(users);
+    };
+    ```
+    
+- **Agregar la ruta en `src/index.ts`**:
+    
+    ```ts
+    import express from "express";
+    import routes from "./routes";
+
+    const app = express();
+    const port = process.env.PORT || 3000;
+
+    app.use(express.json());
+    app.use("/api", routes);
+
+    app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    });
+    ```
+    
+## Paso 8: Configurar variables de entorno
+
+- **Instala dotenv** para manejar variables de entorno:
+    ```bash
+    npm install dotenv
+    ```
+    
+- **Crea un archivo `.env`** en la raíz del proyecto, añade alguna variable como el puerto:
+    ```bash
+    PORT=4000
+    ```
+    
+- **Carga las variables en `src/index.ts`**:
+    
+    ```ts
+    import dotenv from "dotenv";
+    dotenv.config();
+    ```
+    
+
+## Paso 9: Configurar el manejo de errores
+
+- **Crea un middleware de manejo de errores** en **`src/middleware/errorHandler.ts`**:
+    
+    ```ts
+    import { Request, Response, NextFunction } from "express";
+
+    export const errorHandler = (
+    err: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+    ) => {
+    console.error(err.stack);
+    res.status(500).send({ message: "Something went wrong!" });
+    };
+    ```
+    
+- **Utiliza el middleware en `src/index.ts`**:
+    
+    ```ts
+    import { errorHandler } from "./middleware/errorHandler";
+    
+    app.use(errorHandler);
+    ```
+    
+
+## Paso 10: Compilar y desplegar
+
+- **Compila el proyecto**:
+
+    ```bash
+    npm run build
+    ```
+    
+- **Ejecuta el servidor compilado**:
+    
+    ```bash
+    npm start
+    ```
+>info
+Con estos pasos tendrás una **API** básica con **Node.js** y **TypeScript** que incluye **rutas**, **controladores**, **manejo de errores** y **configuración de variables de entorno**.
 
  ## Estructura Simple 
  Esta estructura es más simple y directa:
-```
+```bash
 my-simple-api/
 ├── src/
 │   ├── controllers/
